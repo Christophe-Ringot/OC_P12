@@ -13,7 +13,7 @@ Identifier des sources exploitables pour constituer un corpus **multimodal** (te
 - une **provenance vérifiable** (URL, nom de domaine),
 - un **label** vrai/faux exploitable, direct (dataset annoté) ou indirect (fiabilité de la source, verdict de fact-checking).
 
-5 sources ont été évaluées (le brief en demandait au moins 3) afin de couvrir trois familles complémentaires : **API de presse** (texte + image, non labellisé), **réseaux sociaux** (texte + image, labellisation faible/communautaire), **datasets académiques pré-labellisés** (texte + image, labels forts), et **API de fact-checking** (texte, labels forts, peu/pas d'image).
+6 sources ont été évaluées (le brief en demandait au moins 3) afin de couvrir des familles complémentaires : **API de presse** (texte + image, non labellisé), **flux RSS agrégateur** (texte, accès le plus simple sans clé ni compte), **réseaux sociaux** (texte + image, labellisation faible/communautaire) et **datasets académiques pré-labellisés** (texte + image, labels forts).
 
 ---
 
@@ -72,8 +72,19 @@ Identifier des sources exploitables pour constituer un corpus **multimodal** (te
 | Format | JSON/CSV via dépôt GitHub officiel (`KaiDMML/FakeNewsNet`), scripts de collecte fournis |
 | Langue | Anglais |
 | Qualité des labels | **Forte** : verdicts issus de fact-checkers professionnels. PolitiFact ("False"/"Pants on Fire" => fake, "True" => real) ; GossipCop (score de crédibilité => fake si faible) |
-| Méthode d'extraction | Le dépôt fournit un script de collecte qui re-télécharge les articles (URLs) et un jeu d'IDs Twitter associés (soumis aux CGU Twitter/X, accès limité) |
-| Points de vigilance | Certains liens d'articles sont morts (link rot) plusieurs années après collecte prévoir un taux de perte à l'extraction et un fallback (cache Wayback Machine) |
+| Méthode d'extraction | Les CSV labellisés (`id, news_url, title, tweet_ids`) sont publiés en clair sur `raw.githubusercontent.com`, sans authentification : simple GET HTTP, pas besoin de cloner le dépôt ni de clé Twitter (celle-ci ne sert qu'au contexte social, non utilisé ici). Confirmé à l'étape 2 : source entièrement automatisable, contrairement à ce qui était anticipé ici |
+| Points de vigilance | Certains liens d'articles sont morts (link rot) plusieurs années après collecte — confirmé à l'étape 2 (plusieurs URLs de 2017-2018 injoignables) ; prévoir un taux de perte à l'extraction, notamment pour l'image (récupérée en best-effort depuis la page, pas fournie par le CSV) |
+
+### 2.6 Google News RSS
+
+| Critère | Détail |
+|---|---|
+| Modalités | Texte (titre, résumé) + image (souvent absente du flux brut, à récupérer via l'article source ou une requête OpenGraph sur `link`) |
+| Format | XML (RSS 2.0), généré dynamiquement |
+| Langue/pays | Paramétrable dans l'URL (`hl`, `gl`, `ceid`), ex. `hl=fr&gl=FR&ceid=FR:fr` |
+| Qualité des labels | Aucun label natif ; agrège des milliers de médias de fiabilité très variable — le nom du média d'origine (visible dans le titre ou en résolvant le lien) reste le seul proxy de fiabilité, à croiser avec une liste de réputation |
+| Méthode d'extraction | Le plus simple des flux étudiés : une simple requête GET sur `https://news.google.com/rss` (fil du jour) ou `https://news.google.com/rss/search?q=<mot-clé>` (recherche par thème/mot-clé), sans clé API ni compte, parsing avec `feedparser` |
+| Points de vigilance | Format non documenté officiellement par Google (mais stable de facto depuis des années) ; les liens `link` redirigent via `news.google.com/rss/articles/...` avant d'atteindre l'article d'origine — prévoir une résolution de redirection avant d'aller chercher l'image sur la page finale |
 
 ---
 
@@ -85,7 +96,8 @@ Identifier des sources exploitables pour constituer un corpus **multimodal** (te
 | NewsData.io | Oui | Oui (URL) | JSON | Multi (89 langues) |  aucun | API REST | Officiel (clé API) |
 | Reddit / PRAW | Oui | Oui (native) | JSON | EN majoritaire |  indirect (subreddit/flair) | API REST OAuth2 | Officiel (approbation requise) |
 | Fakeddit | Oui | Oui (dataset) | TSV/CSV + images | EN |  bon (distant supervision, 3 granularités) | Téléchargement direct | Dataset académique ouvert |
-| FakeNewsNet | Oui | Oui | JSON/CSV | EN |  fort (fact-checkers) | Scripts de collecte fournis | Dataset académique + re-collecte |
+| FakeNewsNet | Oui | Oui (best-effort) | JSON/CSV | EN |  fort (fact-checkers) | CSV public (HTTP direct) | Dataset académique (CSV public) |
+| Google News RSS | Oui (extrait) | Rare (via résolution de lien) | XML | Multi (param. `hl`/`gl`) |  aucun (agrégateur) | Parsing RSS | Officiel par nature |
 
 
 ---
@@ -136,5 +148,6 @@ Conséquences pour la sélection de sources :
 | NewsAPI.org / NewsData.io | Gratuit = non-commercial / développement uniquement ; usage projet d'étude conforme |
 | Reddit | Gratuit tant que non-commercial, **approbation d'app obligatoire** depuis la Responsible Builder Policy à demander en amont, prévoir un délai |
 | Fakeddit / FakeNewsNet | Datasets académiques diffusés pour la recherche, citer les papiers d'origine, usage non commercial |
+| Google News RSS | Flux public non documenté officiellement mais librement accessible (pas de clé, pas de compte) ; le contenu complet reste soumis au droit d'auteur du média d'origine une fois le lien résolu |
 
 
