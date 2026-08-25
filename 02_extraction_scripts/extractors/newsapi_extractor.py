@@ -89,5 +89,5 @@ def run(query: str = "", language: str = config.DEFAULT_LANGUAGE, limit: int = 2
         publication.image_path = download_image(publication.image_url, publication.id, session)
         publications.append(publication.to_dict())
 
-    logger.info("NewsAPI : {len(publications)}/{len(articles)} article(s) exploitable(s)")
+    logger.info("NewsAPI : %d/%d article(s) exploitable(s)", len(publications), len(articles))
     return publications

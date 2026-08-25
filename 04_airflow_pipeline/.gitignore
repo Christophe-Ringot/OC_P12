@@ -1,0 +1,11 @@
+.env
+logs/*
+!logs/.gitkeep
+plugins/*
+!plugins/.gitkeep
+
+# Scaffolding utilisé uniquement pour vérifier le DAG en local sans Docker (poste de dev
+# sans WSL2 fonctionnel) : non nécessaire au déploiement docker-compose documenté dans README.md.
+venv_local_verify/
+.airflow_home_local_verify/
+_local_verify_env.sh

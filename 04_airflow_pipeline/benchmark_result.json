@@ -1,0 +1,15 @@
+{
+  "extract_rss": 0.176,
+  "extract_newsapi": 0.961,
+  "extract_newsdata": 1.012,
+  "extract_fakenewsnet": 1.243,
+  "transform": 0.033,
+  "total": 3.425,
+  "input_count": 42,
+  "output_count": 42,
+  "rejets": {
+    "champs_obligatoires_manquants": 0,
+    "texte_vide_apres_nettoyage": 0
+  },
+  "doublons": 0
+}

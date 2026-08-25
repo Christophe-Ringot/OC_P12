@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-08-14T14:21:37.710808+00:00",
+  "output_count": 1129,
+  "rejets": {
+    "champs_obligatoires_manquants": 0,
+    "texte_vide_apres_nettoyage": 0
+  },
+  "doublons_supprimes": 41,
+  "input_count": 1170
+}

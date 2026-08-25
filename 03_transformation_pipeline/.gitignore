@@ -1,5 +1,2 @@
 __pycache__/
 *.pyc
-logs/*.log
-data/processed/*
-!data/processed/.gitkeep

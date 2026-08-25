@@ -1,0 +1,85 @@
+2026-08-14 15:04:05 | INFO     | __main__ | 3 enregistrement(s) lus depuis google_news_rss.jsonl
+2026-08-14 15:04:05 | INFO     | __main__ | Lecture terminée : 3 enregistrement(s) au total
+2026-08-14 15:04:05 | INFO     | __main__ | Traitement terminé : 3 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:04:05 | INFO     | __main__ | Déduplication : 0 doublon(s) supprimé(s)
+2026-08-14 15:04:05 | INFO     | __main__ | Export JSONL : 3 ligne(s) -> data\processed\dataset_clean.jsonl
+2026-08-14 15:04:05 | INFO     | __main__ | Export CSV : 3 ligne(s) -> data\processed\dataset_clean.csv
+2026-08-14 15:04:05 | INFO     | __main__ | Manifest -> data\processed\manifest.json
+2026-08-14 15:05:17 | INFO     | transform | 6 enregistrement(s) lus depuis sample_raw.jsonl
+2026-08-14 15:05:17 | INFO     | transform | Lecture terminée : 6 enregistrement(s) au total
+2026-08-14 15:05:17 | WARNING  | transform | Association texte-image incohérente pour id=fixture-b (image_path=tests/fixtures/images/fixture-a.png)
+2026-08-14 15:05:17 | WARNING  | transform | Association texte-image incohérente pour id=fixture-c (image_path=tests/fixtures/images/missing.png)
+2026-08-14 15:05:17 | INFO     | transform | Traitement terminé : 5 retenue(s), 1 rejetée(s) ({'champs_obligatoires_manquants': 1, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:05:17 | INFO     | transform | Déduplication : 1 doublon(s) supprimé(s)
+2026-08-14 15:20:56 | INFO     | __main__ | 3 enregistrement(s) lus depuis fakeddit.jsonl
+2026-08-14 15:20:56 | INFO     | __main__ | 12 enregistrement(s) lus depuis fakenewsnet.jsonl
+2026-08-14 15:20:56 | INFO     | __main__ | 3 enregistrement(s) lus depuis google_news_rss.jsonl
+2026-08-14 15:20:56 | INFO     | __main__ | Lecture terminée : 18 enregistrement(s) au total
+2026-08-14 15:20:56 | INFO     | __main__ | Traitement terminé : 18 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:20:56 | INFO     | __main__ | Déduplication : 0 doublon(s) supprimé(s)
+2026-08-14 15:20:56 | INFO     | __main__ | Export JSONL : 18 ligne(s) -> data\processed\dataset_clean.jsonl
+2026-08-14 15:20:56 | INFO     | __main__ | Export CSV : 18 ligne(s) -> data\processed\dataset_clean.csv
+2026-08-14 15:20:56 | INFO     | __main__ | Manifest -> data\processed\manifest.json
+2026-08-14 15:23:09 | INFO     | transform | 8 enregistrement(s) lus depuis sample_raw.jsonl
+2026-08-14 15:23:09 | INFO     | transform | Lecture terminée : 8 enregistrement(s) au total
+2026-08-14 15:23:09 | WARNING  | transform | Association texte-image incohérente pour id=fixture-b (image_path=tests/fixtures/images/fixture-a.png)
+2026-08-14 15:23:09 | WARNING  | transform | Association texte-image incohérente pour id=fixture-c (image_path=tests/fixtures/images/missing.png)
+2026-08-14 15:23:09 | INFO     | transform | Traitement terminé : 7 retenue(s), 1 rejetée(s) ({'champs_obligatoires_manquants': 1, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:23:09 | INFO     | transform | Déduplication : 1 doublon(s) supprimé(s)
+2026-08-14 15:23:17 | INFO     | __main__ | 3 enregistrement(s) lus depuis fakeddit.jsonl
+2026-08-14 15:23:17 | INFO     | __main__ | 12 enregistrement(s) lus depuis fakenewsnet.jsonl
+2026-08-14 15:23:17 | INFO     | __main__ | 3 enregistrement(s) lus depuis google_news_rss.jsonl
+2026-08-14 15:23:17 | INFO     | __main__ | Lecture terminée : 18 enregistrement(s) au total
+2026-08-14 15:23:17 | INFO     | __main__ | Traitement terminé : 18 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:23:17 | INFO     | __main__ | Déduplication : 0 doublon(s) supprimé(s)
+2026-08-14 15:23:17 | INFO     | __main__ | Export JSONL : 18 ligne(s) -> data\processed\dataset_clean.jsonl
+2026-08-14 15:23:17 | INFO     | __main__ | Export CSV : 18 ligne(s) -> data\processed\dataset_clean.csv
+2026-08-14 15:23:17 | INFO     | __main__ | Manifest -> data\processed\manifest.json
+2026-08-14 15:34:51 | INFO     | __main__ | 3 enregistrement(s) lus depuis fakeddit.jsonl
+2026-08-14 15:34:51 | INFO     | __main__ | 100 enregistrement(s) lus depuis fakenewsnet.jsonl
+2026-08-14 15:34:51 | INFO     | __main__ | 30 enregistrement(s) lus depuis google_news_rss.jsonl
+2026-08-14 15:34:51 | INFO     | __main__ | Lecture terminée : 133 enregistrement(s) au total
+2026-08-14 15:34:51 | INFO     | __main__ | Traitement terminé : 133 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:34:51 | INFO     | __main__ | Déduplication : 0 doublon(s) supprimé(s)
+2026-08-14 15:34:51 | INFO     | __main__ | Export JSONL : 133 ligne(s) -> data\processed\dataset_clean.jsonl
+2026-08-14 15:34:51 | INFO     | __main__ | Export CSV : 133 ligne(s) -> data\processed\dataset_clean.csv
+2026-08-14 15:34:51 | INFO     | __main__ | Manifest -> data\processed\manifest.json
+2026-08-14 15:46:33 | INFO     | __main__ | 3 enregistrement(s) lus depuis fakeddit.jsonl
+2026-08-14 15:46:33 | INFO     | __main__ | 100 enregistrement(s) lus depuis fakenewsnet.jsonl
+2026-08-14 15:46:33 | INFO     | __main__ | 30 enregistrement(s) lus depuis google_news_rss.jsonl
+2026-08-14 15:46:33 | INFO     | __main__ | 30 enregistrement(s) lus depuis newsapi.jsonl
+2026-08-14 15:46:33 | INFO     | __main__ | 10 enregistrement(s) lus depuis newsdata.jsonl
+2026-08-14 15:46:33 | INFO     | __main__ | Lecture terminée : 173 enregistrement(s) au total
+2026-08-14 15:46:33 | INFO     | __main__ | Traitement terminé : 173 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 15:46:33 | INFO     | __main__ | Déduplication : 0 doublon(s) supprimé(s)
+2026-08-14 15:46:33 | INFO     | __main__ | Export JSONL : 173 ligne(s) -> data\processed\dataset_clean.jsonl
+2026-08-14 15:46:33 | INFO     | __main__ | Export CSV : 173 ligne(s) -> data\processed\dataset_clean.csv
+2026-08-14 15:46:33 | INFO     | __main__ | Manifest -> data\processed\manifest.json
+2026-08-14 16:21:36 | INFO     | __main__ | 3 enregistrement(s) lus depuis fakeddit.jsonl
+2026-08-14 16:21:36 | INFO     | __main__ | 240 enregistrement(s) lus depuis fakenewsnet.jsonl
+2026-08-14 16:21:36 | INFO     | __main__ | 400 enregistrement(s) lus depuis google_news_rss.jsonl
+2026-08-14 16:21:36 | INFO     | __main__ | 388 enregistrement(s) lus depuis newsapi.jsonl
+2026-08-14 16:21:36 | INFO     | __main__ | 139 enregistrement(s) lus depuis newsdata.jsonl
+2026-08-14 16:21:36 | INFO     | __main__ | Lecture terminée : 1170 enregistrement(s) au total
+2026-08-14 16:21:37 | INFO     | __main__ | Traitement terminé : 1170 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-14 16:21:37 | INFO     | __main__ | Déduplication : 41 doublon(s) supprimé(s)
+2026-08-14 16:21:37 | INFO     | __main__ | Export JSONL : 1129 ligne(s) -> data\processed\dataset_clean.jsonl
+2026-08-14 16:21:37 | INFO     | __main__ | Export CSV : 1129 ligne(s) -> data\processed\dataset_clean.csv
+2026-08-14 16:21:37 | INFO     | __main__ | Manifest -> data\processed\manifest.json
+2026-08-23 11:14:30 | INFO     | extractors.google_news_rss_extractor | Google News RSS : 5/5 entrée(s) exploitable(s) (texte seul, pas d'image disponible sur cette source)
+2026-08-23 11:14:30 | INFO     | transform | Traitement terminé : 5 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-23 11:16:46 | INFO     | extractors.google_news_rss_extractor | Google News RSS : 10/10 entrée(s) exploitable(s) (texte seul, pas d'image disponible sur cette source)
+2026-08-23 11:16:59 | INFO     | extractors.google_news_rss_extractor | Google News RSS : 10/10 entrée(s) exploitable(s) (texte seul, pas d'image disponible sur cette source)
+2026-08-23 11:17:00 | INFO     | extractors.newsapi_extractor | NewsAPI : 10/10 article(s) exploitable(s)
+2026-08-23 11:17:01 | INFO     | extractors.newsdata_extractor | NewsData.io : 10/10 article(s) exploitable(s)
+2026-08-23 11:17:01 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet politifact/fake : 3 ligne(s) à traiter
+2026-08-23 11:17:01 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet politifact/fake : 3 publication(s) retenue(s), 0 avec image
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet politifact/real : 3 ligne(s) à traiter
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet politifact/real : 3 publication(s) retenue(s), 0 avec image
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet gossipcop/fake : 3 ligne(s) à traiter
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet gossipcop/fake : 3 publication(s) retenue(s), 0 avec image
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet gossipcop/real : 3 ligne(s) à traiter
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet gossipcop/real : 3 publication(s) retenue(s), 0 avec image
+2026-08-23 11:17:02 | INFO     | extractors.fakenewsnet_extractor | FakeNewsNet : 12 publication(s) au total
+2026-08-23 11:17:03 | INFO     | transform | Traitement terminé : 42 retenue(s), 0 rejetée(s) ({'champs_obligatoires_manquants': 0, 'texte_vide_apres_nettoyage': 0})
+2026-08-23 11:17:03 | INFO     | transform | Déduplication : 0 doublon(s) supprimé(s)

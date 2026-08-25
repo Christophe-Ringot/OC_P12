@@ -39,7 +39,7 @@ def fetch(session: requests.Session, query: str, language: str, page_token: Opti
 
         if response.status_code == 429:
             wait = int(response.headers.get("Retry-After", 5))
-            logger.warning("Quota NewsData.io atteint (tentative {attempt}/{MAX_RETRIES}), attente {wait}s")
+            logger.warning("Quota NewsData.io atteint (tentative %d/%d), attente %ds", attempt, MAX_RETRIES, wait)
             time.sleep(wait)
             continue
 
