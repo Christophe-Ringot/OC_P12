@@ -12,20 +12,15 @@ x-airflow-common: &airflow-common
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
-    # Lecture-écriture : les tâches d'extraction y téléchargent de nouvelles images
-    # (common/storage.download_image), exactement comme lors d'un run local de l'étape 2.
     - ../02_extraction_scripts:/opt/airflow/checkitai/02_extraction_scripts
-    # Lecture seule : la tâche transform() n'importe que des fonctions Python de l'étape 3,
-    # elle n'écrit aucun fichier dans ce dossier (le chargement va directement en base).
     - ../03_transformation_pipeline:/opt/airflow/checkitai/03_transformation_pipeline:ro
+    - ../03_transformation_pipeline/logs:/opt/airflow/checkitai/03_transformation_pipeline/logs
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
     postgres-airflow:
       condition: service_healthy
 
 services:
-  # Base de données interne d'Airflow (métadonnées : DAGs, runs, connections chiffrées...)
-  # séparée de la base cible du pipeline pour ne jamais mélanger les deux rôles.
   postgres-airflow:
     image: postgres:16
     environment:
@@ -40,8 +35,6 @@ services:
       retries: 10
     restart: unless-stopped
 
-  # Base cible du pipeline ETL (schéma sources/publications). Rôle applicatif à
-  # privilèges limités créé par sql/init_checkitai_db.sh au premier démarrage.
   postgres-checkitai:
     image: postgres:16
     environment:
@@ -53,7 +46,7 @@ services:
       - postgres-checkitai-data:/var/lib/postgresql/data
       - ./sql:/docker-entrypoint-initdb.d
     ports:
-      - "5433:5432" # exposé uniquement pour inspection locale (ex. DBeaver) pendant le développement
+      - "5433:5432"
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s

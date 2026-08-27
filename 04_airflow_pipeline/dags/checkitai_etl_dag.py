@@ -10,21 +10,15 @@ from airflow.operators.python import PythonOperator
 
 logger = logging.getLogger(__name__)
 
-# Chemins par défaut = ceux montés par docker-compose.yaml. Surchargeables par variable
-# d'environnement pour une exécution locale (ex. Airflow standalone sans Docker).
+
 EXTRACTION_DIR = os.environ.get("CHECKITAI_EXTRACTION_DIR", "/opt/airflow/checkitai/02_extraction_scripts")
 TRANSFORM_DIR = os.environ.get("CHECKITAI_TRANSFORM_DIR", "/opt/airflow/checkitai/03_transformation_pipeline")
 
 DEFAULT_LANGUAGE = "fr"
 DEFAULT_QUERY = "climat"
-EXTRACT_LIMIT = 10  # volontairement bas : tâches courtes et modulaires (point de vigilance du brief)
+EXTRACT_LIMIT = 10 
 
 def alert_on_failure(context):
-    """Callback d'alerte Airflow, déclenché quand une tâche épuise ses retries (cf. étape 5,
-    plan de monitoring). Se contente de logger ici (visible dans les logs de tâche + l'UI) ;
-    en production, remplacer par un envoi Slack/email, ex. :
-    requests.post(SLACK_WEBHOOK_URL, json={"text": "..."})  # une ligne à ajouter, rien d'autre.
-    """
     ti = context["task_instance"]
     logger.error(
         "ALERTE pipeline : la tâche '%s' du DAG '%s' a échoué (run_id=%s) après épuisement des retries.",
@@ -41,13 +35,6 @@ default_args = {
 
 
 def _use_extraction_modules():
-    """Ajoute UNIQUEMENT le dossier de l'étape 2 à sys.path pour cette tâche.
-
-    Les étapes 2 et 3 ont chacune leur propre logger_setup.py (même nom de module) : les
-    monter toutes les deux sur sys.path en même temps ferait gagner l'une au hasard de
-    l'ordre d'import. Comme LocalExecutor exécute chaque tâche dans son propre processus,
-    limiter l'ajout au dossier utile par la tâche courante évite toute collision.
-    """
     if EXTRACTION_DIR not in sys.path:
         sys.path.insert(0, EXTRACTION_DIR)
 
@@ -108,9 +95,6 @@ def extract_fakenewsnet(**context) -> list[dict]:
     _use_extraction_modules()
     from extractors import fakenewsnet_extractor
 
-    # enrich_images=False : garder la tâche courte (le best-effort d'image implique une
-    # requête HTTP par ligne vers des domaines tiers variés, cf. étape 2) ; le texte
-    # labellisé, lui, est déjà disponible sans enrichissement.
     return fakenewsnet_extractor.run(limit_per_category=3, enrich_images=False)
 
 
@@ -133,10 +117,6 @@ def transform(**context) -> list[dict]:
 
 
 def _to_timestamp(value):
-    """Normalise les formats de date hétérogènes des sources (RFC822 pour le RSS, ISO8601
-    pour les API, "YYYY-MM-DD HH:MM:SS" pour NewsData...) vers un datetime unique, seul
-    format que psycopg2 adapte sans ambiguïté vers TIMESTAMPTZ. None si absent/invalide.
-    """
     if not value:
         return None
     from dateutil import parser as date_parser
@@ -159,8 +139,6 @@ def load_to_postgres(**context) -> int:
         logger.info("Aucune publication à charger")
         return 0
 
-    # Connection Airflow "checkitai_postgres" -> identifiants chiffrés (Fernet) en base de
-    # métadonnées Airflow, jamais en clair dans ce fichier. Voir README.md pour sa création.
     conn_info = BaseHook.get_connection("checkitai_postgres")
     conn = psycopg2.connect(
         host=conn_info.host,
@@ -172,9 +150,6 @@ def load_to_postgres(**context) -> int:
 
     try:
         with conn, conn.cursor() as cur:
-            # source_name est la clé primaire de la table sources : un enregistrement par
-            # valeur distincte suffit (dernière valeur vue gagne en cas de léger désaccord
-            # sur le domaine/type, ce qui n'arrive pas en pratique ici).
             sources_by_name = {r["source_name"]: (r["source_name"], r["source_domain"], r["source_type"]) for r in records}
             sources_rows = list(sources_by_name.values())
 

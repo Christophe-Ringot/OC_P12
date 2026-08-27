@@ -55,7 +55,7 @@ manifest = load_manifest()
 df = load_clean_dataset()
 benchmark = load_benchmark()
 
-st.title("📊 Suivi du pipeline ETL — CheckItAI")
+st.title("Suivi du pipeline ETL — CheckItAI")
 st.caption("Extraction (étape 2) → Transformation (étape 3) → Chargement Airflow (étape 4). Données lues directement depuis les fichiers produits par les runs réels du pipeline.")
 
 if manifest is None or df.empty:

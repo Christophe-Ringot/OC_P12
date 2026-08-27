@@ -1,3 +1,6 @@
+streamlit>=1.38
+altair>=5.0
+pandas>=2.2
 requests>=2.32
 feedparser>=6.0
 beautifulsoup4>=4.12
